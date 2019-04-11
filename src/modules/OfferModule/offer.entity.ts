@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Users } from '../UsersModule/users.entity';
 
 @Entity()
 export class Offer {
@@ -20,7 +21,8 @@ export class Offer {
   @Column()
   longitude: string;
 
-  @Column()
+  @ManyToOne(type => Users)
+  @JoinColumn({name: 'guideId'})
   guideId: number;
 
   @Column()
