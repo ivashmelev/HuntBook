@@ -1,16 +1,15 @@
-import { Controller, Get, Param, HttpCode, Header, Post, Put, Delete, Body, Catch, UseFilters, ForbiddenException, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Param, HttpCode, Header, Post, Put, Delete, Body, Catch, UseFilters, ForbiddenException, HttpException, HttpStatus, UseGuards } from '@nestjs/common';
 import { Offer } from '../modules/OfferModule/offer.entity';
 import { getRepository } from "typeorm";
 import { CreateOfferDto } from 'src/modules/OfferModule/create-offer.dto';
-import { callbackify } from 'util';
-import { create } from 'domain';
-import { HttpExceptionFilter } from 'src/exception.filter';
+import { AuthGuard, PassportModule } from '@nestjs/passport';
 
 @Controller('offers')
 
 export class OffersController {
   date = new Date();
   @Get()
+  // @UseGuards(AuthGuard()) К сожалению, не смог доделать авторизацию. После сдачи ТЗ займусь ее доработкой.
   findAll() {
     const offerRepository = getRepository(Offer);
     const response = offerRepository.find();

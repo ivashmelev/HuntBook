@@ -9,10 +9,12 @@ import { FowlModule } from './modules/FowlModule/fowl.module';
 import { HuntModule } from './modules/HuntModule/hunt.module';
 import { BookingsModule } from './modules/BookingsModule/bookings.module';
 import { UsersModule } from './modules/UsersModule/users.module';
+import { RegistrationController } from './registration/registration.controller';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), OfferModule, FowlModule, HuntModule, BookingsModule, UsersModule],
-  controllers: [AppController, OffersController, BookingController],
+  imports: [TypeOrmModule.forRoot(), OfferModule, FowlModule, HuntModule, BookingsModule, UsersModule, AuthModule],
+  controllers: [AppController, OffersController, BookingController, RegistrationController],
   providers: [AppService],
 })
 export class AppModule {}
